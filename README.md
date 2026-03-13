@@ -1,5 +1,5 @@
-![Build](https://github.com/esell/deb-simple/workflows/Build/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/esell/deb-simple/badge.svg?branch=master)](https://coveralls.io/github/esell/deb-simple?branch=master)
+![Build](https://github.com/adam-blinzler/deb-simple/workflows/Build/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/adam-blinzler/deb-simple/badge.svg?branch=master)](https://coveralls.io/github/adam-blinzler/deb-simple?branch=master)
 
 # MAINTAINER WANTED
 
@@ -35,7 +35,7 @@ to be used in a CI pipeline it had to support remote uploads and be able to upda
 
 # General Usage:
 
-**This project is now using the native Go vendoring feature so you will need to build with Go >1.7 or if using 1.5/1.6 you will need to make sure `GO15VENDOREXPERIMENT` is set to `1`.**		
+**This project is now using the native Go vendoring feature so you will need to build with Go >1.7 or if using 1.5/1.6 you will need to make sure `GO15VENDOREXPERIMENT` is set to `1`.**
 
 
 If you do not want to build from source you can just download a pre-built binary from the Releases section.
@@ -89,7 +89,7 @@ A delete would look like:
 `curl -XDELETE 'http://localhost:9090/delete?key=MY_BIG_API_KEY' -d '{"filename":"myapp.deb","distroName":"stable","arch":"amd64", "section":"main"}'`
 
 If you want an automatable service which builds you packages, either manualy or via CI/CD, checkout [debpkg](https://github.com/xor-gate/debpkg),
-which makes it very easy to create complex packages with almost no work.  
+which makes it very easy to create complex packages with almost no work.
 
 If you want to continuous deliver created packages to deb-simple server, it is not recommended to place the key
 somewhere others could find it. You can use [deb-simple-cd-helper](https://github.com/paulkramme/deb-simple-cd-help),

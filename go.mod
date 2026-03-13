@@ -1,4 +1,4 @@
-module github.com/esell/deb-simple
+module github.com/adam-blinzler/deb-simple
 
 go 1.18
 
