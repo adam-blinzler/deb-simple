@@ -17,6 +17,10 @@ release: build-win build-linux build-osx build-deb
 
 build-win:
 	GOOS=windows go build -o release/$(BINARY)-$(VERSION)-win.exe
+build-win-cmd:
+	set GOOS=windows
+	set GARCH=amd64
+	go build -o release/$(BINARY)-$(VERSION)-win.exe
 build-linux:
 	GOOS=linux go build -o release/${BINARY}-$(VERSION)-linux-amd64
 build-osx:
