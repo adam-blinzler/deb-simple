@@ -8,3 +8,4 @@ deb-simple
 debsimple.db
 build-stuff/
 testing
+release/
