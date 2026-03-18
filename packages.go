@@ -8,6 +8,7 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -15,9 +16,9 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"errors"
 
 	"github.com/blakesmith/ar"
+	"github.com/klauspost/compress/zstd"
 	lzma "github.com/xi2/xz"
 )
 
@@ -26,6 +27,7 @@ type Compression int
 const (
 	LZMA Compression = iota
 	GZIP
+	ZSTD
 )
 
 func inspectPackage(filename string) (string, error) {
@@ -59,6 +61,8 @@ func inspectPackage(filename string) (string, error) {
 				compression = GZIP
 			} else if strings.TrimRight(header.Name, "/") == "control.tar.xz" {
 				compression = LZMA
+			} else if strings.TrimRight(header.Name, "/") == "control.tar.zst" {
+				compression = ZSTD
 			} else {
 				log.Println("\t No control file found")
 				err := errors.New("No control file found")
@@ -97,10 +101,20 @@ func inspectPackageControl(compression Compression, filename bytes.Buffer) (stri
 			log.Println("\t LZMA Control file found")
 		}
 		break
+	case ZSTD:
+		decoder, err := zstd.NewReader(bytes.NewReader(filename.Bytes()))
+		if err != nil {
+			return "", fmt.Errorf("error creating zstd decoder: %s", err)
+		}
+		defer decoder.Close()
+		tarReader = tar.NewReader(decoder)
+		if *verbose {
+			log.Println("\t ZSTD Control file found")
+		}
 	}
 
 	if err != nil {
-		return "", fmt.Errorf("error creating gzip/lzma reader: %s", err)
+		return "", fmt.Errorf("error creating gzip/lzma/zstd reader: %s", err)
 	}
 
 	var controlBuf bytes.Buffer
