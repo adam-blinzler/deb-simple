@@ -17,14 +17,20 @@ release: build-win build-linux build-osx build-deb
 
 build-win:
 	GOOS=windows go build -o release/$(BINARY)-$(VERSION)-win.exe
+
+build-win-ps:
+	powershell -Command "& { $$env:GOOS='windows'; $$env:GARCH='amd64'; go build -o 'release/$(BINARY)-$(VERSION)-win.exe' }"
+
 build-win-cmd:
 	set GOOS=windows
 	set GARCH=amd64
 	go build -o release/$(BINARY)-$(VERSION)-win.exe
 build-linux:
 	GOOS=linux go build -o release/${BINARY}-$(VERSION)-linux-amd64
+
 build-osx:
 	GOOS=darwin go build -o release/$(BINARY)-$(VERSION)-osx
+
 build-deb:
 	which -s dpkg-deb || { echo "dpkg-deb does not exist, exiting..."; exit 1; }
 	mkdir release/$(BINARY)-$(VERSION)
