@@ -1,17 +1,18 @@
-# github.com/blakesmith/ar v0.0.0-20150311145944-8bd4349a67f2
+# github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb
 ## explicit
 github.com/blakesmith/ar
 # github.com/boltdb/bolt v1.3.1
 ## explicit
 github.com/boltdb/bolt
-# github.com/fsnotify/fsnotify v1.4.2
-## explicit
+# github.com/fsnotify/fsnotify v1.9.0
+## explicit; go 1.17
 github.com/fsnotify/fsnotify
+github.com/fsnotify/fsnotify/internal
 # github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8
 ## explicit
 github.com/xi2/xz
-# golang.org/x/crypto v0.1.0
-## explicit; go 1.17
+# golang.org/x/crypto v0.49.0
+## explicit; go 1.25.0
 golang.org/x/crypto/cast5
 golang.org/x/crypto/openpgp
 golang.org/x/crypto/openpgp/armor
@@ -20,6 +21,7 @@ golang.org/x/crypto/openpgp/elgamal
 golang.org/x/crypto/openpgp/errors
 golang.org/x/crypto/openpgp/packet
 golang.org/x/crypto/openpgp/s2k
-# golang.org/x/sys v0.1.0
-## explicit; go 1.17
+# golang.org/x/sys v0.42.0
+## explicit; go 1.25.0
 golang.org/x/sys/unix
+golang.org/x/sys/windows
